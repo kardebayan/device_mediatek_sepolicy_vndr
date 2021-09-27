@@ -1,0 +1,13 @@
+type hal_soter_trustonic, domain;
+type hal_soter_trustonic_exec, exec_type, file_type, vendor_file_type;
+
+init_daemon_domain(hal_soter_trustonic)
+
+allow hal_soter_trustonic hal_soter_trustonic_exec:file execute_no_trans;
+allow hal_soter_trustonic soter_hwservice:hwservice_manager find;
+allow hal_soter_trustonic soter_hwservice:hwservice_manager add;
+allow hal_soter_trustonic hidl_base_hwservice:hwservice_manager add;
+allow hal_soter_trustonic hwservicemanager:binder { call transfer };
+allow hal_soter_trustonic teei_client_device:chr_file rw_file_perms;
+
+get_prop(hal_soter_trustonic, hwservicemanager_prop)
